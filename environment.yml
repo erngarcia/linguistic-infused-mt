@@ -1,0 +1,35 @@
+name: linguistic-infused
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip>=24.0
+  - git
+  - pip:
+      # Core training stack
+      - torch==2.4.0         
+      - torchvision==0.19.0
+      - torchaudio==2.4.0
+      - transformers>=4.43
+      - accelerate>=0.31
+      - trl>=0.9.4
+      - peft>=0.11.1
+      - datasets>=2.19
+      - evaluate>=0.4
+      - sentencepiece>=0.2
+      - bitsandbytes>=0.43.1    
+      - xformers>=0.0.27        
+      # Metrics / utils
+      - sacrebleu>=2.4.2
+      - unbabel-comet>=2.2.2
+      - pandas>=2.1
+      - numpy>=1.26
+      - scikit-learn>=1.4
+      - omegaconf>=2.3.0
+      - rich>=13.7cz 
+      - wandb>=0.17.0
+      - jupyterlab>=4
+      - ipykernel>=6.29
+      - jupyterlab_execute_time>=3.1
+      - openai
+      - python-dotenv
