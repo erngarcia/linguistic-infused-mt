@@ -102,7 +102,7 @@ def generate_translation(
     prompt_template,
     lang_name="Spanish",
     max_new_tokens=300,
-    temperature=0.7,
+    temperature=0.1,
 ):
     """Generate a translation for one sentence."""
     prompt = prompt_template(text, lang_name)
