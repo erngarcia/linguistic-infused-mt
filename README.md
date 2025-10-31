@@ -11,7 +11,8 @@ The project extends MT-GenEval with linguistically informed data (T2) to evaluat
 src/
 ├── data/
 │   ├── augment_mtgeneval.py       # augment MT-GenEval .dev files using OpenAI LLMs
-│   ├── templates.py         
+│   ├── templates.py               # inclues a template to augment MT-GenEval
+|   ├── build_parallel_set.py      #builds T1 dataset. Parallel set src-trg         
 ├── training/
 │   └── train_models.py        # unified training script for T1/T2 across models
 └── inference/

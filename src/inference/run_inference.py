@@ -46,7 +46,7 @@ MODEL_REGISTRY = {
 # Templates
 PROMPTS = {
     "t0": lambda text, lang_name: f"""Translate the following text into {lang_name}.
-Make sure the translation is accurate and natural.
+Output only the translation.
 
 Source:
 {text}
@@ -54,7 +54,7 @@ Source:
 Translation:
 """,
 
-    "t1": lambda text, lang_name: f"""Translate the following into {lang_name}.
+    "t1": lambda text, lang_name: f"""Translate the following text into {lang_name}.
 Rules:
 - Only output the translation (no explanations).
 - Keep named entities intact.
@@ -66,9 +66,15 @@ Source:
 Translation:
 """,
 
-    "t2": lambda text, lang_name: f"""You are a linguist translating into {lang_name}.
-Before translating, reason through pronoun resolution and actor identification.
-Only output the final translation (no reasoning).
+    "t2": lambda text, lang_name: f"""You are a linguist helping to build a reasoning-augmented
+machine translation system to mitigate gender bias.
+
+Before translating into {lang_name}, reason briefly about:
+- coordination and subordination,
+- the actors (subjects, objects),
+- and any gendered pronouns or references.
+
+Then output **only** the final translation (no reasoning).
 
 Source:
 {text}
@@ -76,6 +82,7 @@ Source:
 Translation:
 """,
 }
+
 
 def load_base_model(base_model_name: str):
     """Load base model with 4-bit quantization (for T0)."""

@@ -9,7 +9,6 @@ from pathlib import Path
 from src.data.templates import PROMPT_TEMPLATE
 import os
 from dotenv import load_dotenv
-# Load variables from .env file
 
 def augment_mtgeneval(
     input_dir: str,
@@ -25,9 +24,18 @@ def augment_mtgeneval(
     input_dir = Path(input_dir)
     src_file = next(input_dir.glob("*.en"))
     tgt_file = next(input_dir.glob("*.es"))
-    df_src = pd.read_csv(src_file, names=["source"], sep="\n", quoting=3)
-    df_tgt = pd.read_csv(tgt_file, names=["target"], sep="\n", quoting=3)
-    df = pd.concat([df_src, df_tgt], axis=1)
+    with open(src_file, 'r', encoding='utf-8') as f:
+        src_lines = [line.strip() for line in f if line.strip()]
+
+    with open(src_file, 'r', encoding='utf-8') as f:
+        trg_lines = [line.strip() for line in f if line.strip()]
+    
+    min_length = min(len(src_file),len(trg_lines))
+
+    df = pd.DataFrame({
+        "source": src_lines[:min_length],
+        "target": trg_lines[:min_length]
+    })
 
     load_dotenv()
 
